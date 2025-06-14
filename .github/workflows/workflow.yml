@@ -33,8 +33,10 @@ jobs:
           python manage.py test
 
       # Step 5: Archive project as tar.gz
-      - name: Archive project
-        run: tar -czvf app.tar.gz .
+     - name: Archive project
+       run: |
+          tar --warning=no-file-changed -czf app.tar.gz --exclude='.git' --exclude='.github' . || echo "Tar completed with warnings"
+
 
       # Step 6: Copy archive to EC2 instance
       - name: Copy archive to EC2
