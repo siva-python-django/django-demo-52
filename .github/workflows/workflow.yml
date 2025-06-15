@@ -59,6 +59,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
+            sudo rm -rf /home/ubuntu/app_test
             mkdir -p /home/ubuntu/app_test
             tar -xzvf /home/ubuntu/app.tar.gz -C /home/ubuntu/app_test
             cd /home/ubuntu/app_test
@@ -69,3 +70,4 @@ jobs:
             python manage.py migrate --noinput
             python manage.py collectstatic --noinput
             sudo systemctl restart gunicorn || echo "Gunicorn restart skipped"
+            sudo systemctl restart nginx || echo "Skip restart Nginx"
