@@ -61,7 +61,7 @@ jobs:
           script: |
             sudo rm -rf /home/ubuntu/app_test
             mkdir -p /home/ubuntu/app_test
-            cp /home/ubuntu/app_test  /home/ubuntu/devops/.env
+            sudo cp -f /home/ubuntu/devops/.env /home/ubuntu/app_test/
             tar -xzvf /home/ubuntu/app.tar.gz -C /home/ubuntu/app_test
             cd /home/ubuntu/app_test
             python3 -m venv venv
